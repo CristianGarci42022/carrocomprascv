@@ -8,9 +8,9 @@ import Productos from './componentes/Productos';
 function App() {
   return (
     <div className="App">
-      
+       {/*<Producto/>*/}
         <Navbar/>
-     {/*<Producto/>*/}
+    
         <Productos/>
          
     </div>
