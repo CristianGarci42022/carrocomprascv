@@ -10,17 +10,17 @@ import Menu from '@material-ui/core/Menu';
 
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
+import MoreIcon from '@material-ui/icons/MoreVert';
 import Logo from "../imgProductos/Logos/Logo proyecto.png"
 import { Badge, Button } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
-  root:{
+  root: {
     flexGrow: 1,
     marginBottom: "7rem",
   },
-  appBar:{
+  appBar: {
     backgroundColor: "whitesmoke",
     boxShadow: "none",
   },
@@ -29,8 +29,9 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     marginLeft: theme.spacing(2),
+    
   },
-  image:{
+  image: {
     marginRight: "10px",
     height: "4rem"
   },
@@ -77,12 +78,12 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
     },
   },
-//   sectionMobile: {
-//     display: 'flex',
-//     [theme.breakpoints.up('md')]: {
-//       display: 'none',
-//     },
-//   },
+  sectionMobile: {
+    display: 'flex',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
+  },
 }));
 
 
@@ -107,7 +108,9 @@ export default function Navbar() {
     handleMobileMenuClose();
   };
 
- 
+  const handleMobileMenuOpen = (event) => {
+    setMobileMoreAnchorEl(event.currentTarget);
+  };
 
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
@@ -120,8 +123,8 @@ export default function Navbar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Iniciar Sesion</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Mi Cuenta</MenuItem>
     </Menu>
   );
 
@@ -136,8 +139,10 @@ export default function Navbar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      
-      
+
+    <Typography variant="h6" color="textPrimary" component="p">
+        Bienvenido
+    </Typography>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           aria-label="account of current user"
@@ -149,6 +154,14 @@ export default function Navbar() {
         </IconButton>
         <p>Perfil</p>
       </MenuItem>
+      <div className={classes.button}>
+        <IconButton aria-label="show cart items" color="primary">
+          <Badge badgeContent={2} color="secondary">
+            <ShoppingCart fontSize="large" color="primary" />
+          </Badge>
+          <h6>Carrito de compras</h6>
+        </IconButton>    
+      </div>
     </Menu>
   );
 
@@ -162,12 +175,14 @@ export default function Navbar() {
             color="inherit"
             aria-label="open drawer"
           >
-          <img src={Logo} alt="Logo" className={classes.image}/>
+            <img src={Logo} alt="Logo" className={classes.image} />
           </IconButton>
-          
+          <Typography variant="h6" noWrap>
+
+          </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon  color="primary"/>
+              <SearchIcon color="primary" />
             </div>
             <InputBase
               placeholder="Buscar..."
@@ -178,37 +193,42 @@ export default function Navbar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <div className={classes.grow}/>
-          <Typography  variant="h6" color="textPrimary" component="p">
-           Bienvenido 
-          </Typography>
-          <div className={classes.button}>
-              <Button variant="outlined">
-                <strong>Iniciar Secion</strong>
-            </Button>
-            <IconButton aria-label="show cart items" color="primary">
-                <Badge badgeContent={2} color="secondary"> 
-                    <ShoppingCart fontSize="large" color="primary"/>
-                </Badge>
-     
-            </IconButton>
-          </div>
+          <div className={classes.grow} />
+          
+          
+
           <div className={classes.root} />
           <div className={classes.sectionDesktop}>
-            
-           
+          <Typography variant="h6" color="textPrimary" component="p">
+              Bienvenido
+          </Typography>
+          <IconButton aria-label="show cart items" color="primary">
+            <Badge badgeContent={2} color="secondary">
+              <ShoppingCart fontSize="large" color="primary" />
+            </Badge>
+        </IconButton>
             <IconButton
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
-              aria-haspopup="true"
+              aria-haspopup="false"
               onClick={handleProfileMenuOpen}
               color="primary"
             >
               <AccountCircle />
             </IconButton>
           </div>
-          
+          <div className={classes.sectionMobile}>
+            <IconButton
+              aria-label="show more"
+              aria-controls={mobileMenuId}
+              aria-haspopup="true"
+              onClick={handleMobileMenuOpen}
+              color="primary"
+            >
+              <MoreIcon />
+            </IconButton>
+          </div>
         </Toolbar>
       </AppBar>
       {renderMobileMenu}
