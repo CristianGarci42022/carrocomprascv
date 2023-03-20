@@ -9,7 +9,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { red } from '@material-ui/core/colors';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {AddShoppingCart} from '@material-ui/icons';
 import accounting from "accounting";
@@ -36,12 +35,10 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
-  avatar: {
-    backgroundColor: red[500],
-  },
+
 }));
 
-export default function Producto() {
+export default function Producto({producto : {id, nombre, tipoProducto,precio,calificacion,image,descripcion}}) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -60,27 +57,27 @@ export default function Producto() {
                 color="textSecodary"
            >
             
-            {accounting.formatMoney(5000,"$")}
+            {accounting.formatMoney(precio,"$")}
            </Typography> 
         }
-        title="Cervezas"
+        title={nombre}
         subheader="en Stock"
       />
       <CardMedia
         className={classes.media}
-        image="https://www.licorerazonafrank.com/wp-content/uploads/2020/05/Six-Pack-Aguila-Original-330cc.jpg"
-        title="venta de cerveza"
+        image={image}
+        title={nombre}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-         Cerveza
+         {tipoProducto}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
         <IconButton aria-label="add to cart">
          <AddShoppingCart  fontSize='large'/>
         </IconButton>
-        {Array(4)
+        {Array(calificacion)
             .fill()
             .map((_, i)=>(
                 <p>&#11088;</p>
@@ -99,11 +96,8 @@ export default function Producto() {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Hola soy una cerveza</Typography>
-          
-         
-          
-         
+          <Typography paragraph>{descripcion}</Typography>
+
         </CardContent>
       </Collapse>
     </Card>
