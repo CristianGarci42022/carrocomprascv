@@ -3,9 +3,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
 // import {useStateValue} from ".../StateProvider";
-// import Total from "./Total";
 import productos from "../Producto-data";
 import TarjetaPago from "./TarjetaPago";
+import Total from "./Total";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,7 @@ const PaginaPago = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Typography align="center" gutterBottom variant="h4">
-                        ShoppingCart
+                        Carro de Compras
                     </Typography>
                 </Grid>
                 <Grid item xs={12} sm={8} md={9} container spacing={2}>
@@ -44,7 +44,7 @@ const PaginaPago = () => {
                 </Grid>
                 <Grid item xs={12} sm={4} md={3} >
                     <Typography align="center" gutterBottom variant="h4">
-                            Total
+                        <Total/>
                     </Typography>
                 </Grid>
             </Grid> 
