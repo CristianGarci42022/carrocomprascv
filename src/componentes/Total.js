@@ -7,7 +7,7 @@ import { makeStyles,Button } from "@material-ui/core";
 
 
 const useStyles = makeStyles((theme) => ({
-   
+    // no se agrega estilos css
 
   }));
 const Total = () => {

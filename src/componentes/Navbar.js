@@ -14,6 +14,7 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Logo from "../imgProductos/Logos/Logo proyecto.png"
 import { Badge } from '@material-ui/core';
 import { ShoppingCart } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -169,14 +170,17 @@ export default function Navbar() {
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
+        <Link to="/">
           <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
+          edge="start"
+          className={classes.menuButton}
+          color="inherit"
+          aria-label="open drawer"
           >
-            <img src={Logo} alt="Logo" className={classes.image} />
-          </IconButton>
+          <img src={Logo} alt="Logo" className={classes.image} />
+      </IconButton>
+        </Link>
+         
           <Typography variant="h6" noWrap>
 
           </Typography>
@@ -202,11 +206,14 @@ export default function Navbar() {
           <Typography variant="h6" color="textPrimary" component="p">
               Bienvenido
           </Typography>
-          <IconButton aria-label="show cart items" color="primary">
-            <Badge badgeContent={2} color="secondary">
-              <ShoppingCart fontSize="large" color="primary" />
-            </Badge>
-        </IconButton>
+          <Link to="Pagina-Pago">
+            <IconButton aria-label="show cart items" color="primary">
+              <Badge badgeContent={2} color="secondary">
+                <ShoppingCart fontSize="large" color="primary" />
+              </Badge>
+            </IconButton>
+          </Link>
+
             <IconButton
               edge="end"
               aria-label="account of current user"
