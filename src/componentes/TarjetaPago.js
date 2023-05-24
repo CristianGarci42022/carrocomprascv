@@ -8,6 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import accounting from "accounting";
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import { IconButton } from '@material-ui/core';
+import {useStateValue} from "../EstadoProveedor";
+import {actionTypes} from "../reductor";
 
 
 
@@ -33,9 +35,16 @@ const useStyles = makeStyles((theme) => ({
   
 }));
 
+
 export default function TarjetaPago({producto : {id, nombre, tipoProducto,precio,calificacion,image,descripcion}}) {
   const classes = useStyles();
+  const [{basket}, dispatch ] = useStateValue();
 
+  const removerItem = () => dispatch ({
+    type: actionTypes.REMOVE_ITEM,
+    id: id,
+
+  })
 
   return (
     <Card className={classes.root}>
@@ -71,7 +80,7 @@ export default function TarjetaPago({producto : {id, nombre, tipoProducto,precio
             }
         </div>
         <IconButton>
-            <DeleteForeverIcon fontSize="large"/>
+            <DeleteForeverIcon fontSize="large" onClick={removerItem}/>
         </IconButton>
         
       </CardActions>

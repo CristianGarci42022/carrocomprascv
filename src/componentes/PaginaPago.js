@@ -2,8 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Typography } from "@material-ui/core";
-// import {useStateValue} from ".../StateProvider";
-import productos from "../Producto-data";
+import {useStateValue} from "../EstadoProveedor";
 import TarjetaPago from "./TarjetaPago";
 import Total from "./Total";
 
@@ -17,12 +16,14 @@ const useStyles = makeStyles((theme) => ({
   
 const PaginaPago = () => {
     const classes = useStyles();
+    const [{basket}, dispatch ] = useStateValue();
+  
   
 
     function FormRow() {
         return (
             <React.Fragment>
-                {productos.map((item) => (
+                {basket.map((item) => (
                     <Grid item xs={12} sm={8} md={6} lg={4}>
                         <TarjetaPago key={item.id} producto={item}/>
                         

@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-
+import {useStateValue} from "../EstadoProveedor";
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -88,8 +88,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
+
 export default function Navbar() {
   const classes = useStyles();
+  const [{basket}, dispatch ] = useStateValue();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -156,12 +158,14 @@ export default function Navbar() {
         <p>Perfil</p>
       </MenuItem>
       <div className={classes.button}>
-        <IconButton aria-label="show cart items" color="primary">
-          <Badge badgeContent={2} color="secondary">
-            <ShoppingCart fontSize="large" color="primary" />
-          </Badge>
-          <h6>Carrito de compras</h6>
-        </IconButton>    
+        <Link to="Pagina-Pago">
+          <IconButton aria-label="show cart items" color="primary">
+              <Badge badgeContent={basket.length} color="secondary">
+                <ShoppingCart fontSize="large" color="primary" />
+              </Badge>
+              <h6>Carrito de compras</h6>
+            </IconButton>
+        </Link>
       </div>
     </Menu>
   );
@@ -204,11 +208,11 @@ export default function Navbar() {
           <div className={classes.root} />
           <div className={classes.sectionDesktop}>
           <Typography variant="h6" color="textPrimary" component="p">
-              Bienvenido
+            Bienvenido
           </Typography>
           <Link to="Pagina-Pago">
             <IconButton aria-label="show cart items" color="primary">
-              <Badge badgeContent={2} color="secondary">
+              <Badge badgeContent={basket.length} color="secondary">
                 <ShoppingCart fontSize="large" color="primary" />
               </Badge>
             </IconButton>
